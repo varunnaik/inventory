@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "dev": "tsc-watch --onSuccess \"node ./build/index.js\"",
+    "dev": "npm install && tsc-watch --onSuccess \"node ./build/index.js\"",
     "build": "tsc",
-    "start": "node ./build/index.js"
+    "start": "node ./build/index.js",
+    "typeorm": "./node_modules/.bin/ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   },
   "husky": {
     "hooks": {
@@ -17,12 +18,12 @@
   "author": "Varun Naik <varun@vnaik.com>",
   "license": "ISC",
   "dependencies": {
-    "@types/cors": "^2.8.6",
+    "@types/cors": "2.8.6",
     "@types/express": "4.17.2",
-    "cors": "^2.8.5",
+    "cors": "2.8.5",
     "express": "4.17.1",
-    "pg": "^7.14.0",
-    "reflect-metadata": "^0.1.13",
+    "pg": "7.14.0",
+    "reflect-metadata": "0.1.13",
     "typeorm": "^0.2.20"
   },
   "devDependencies": {
@@ -30,6 +31,8 @@
     "tsc-watch": "4.0.0",
     "prettier": "1.19.1",
     "pretty-quick": "2.0.1",
-    "typescript": "3.7.2"
+    "typescript": "3.7.2",
+    "ts-node": "8.5.2",
+    "tsconfig-paths": "3.9.0"
   }
 }
