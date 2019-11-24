@@ -18,6 +18,6 @@ export class ShoppingCentre {
   )
   assets: Asset[];
 
-  @Column()
-  created_at: number;
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  created_at: string;
 }
