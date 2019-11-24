@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { constants } from "http2";
 import { isCelebrate } from "celebrate";
+import { NotFoundError } from "../types/http/Errors";
 
 export function handleApiErrors(
   err: any,
@@ -17,6 +18,9 @@ export function handleApiErrors(
   } else if (err instanceof SyntaxError) {
     statusCode = constants.HTTP_STATUS_BAD_REQUEST;
     message = "Invalid JSON";
+  } else if (err instanceof NotFoundError) {
+    statusCode = constants.HTTP_STATUS_NOT_FOUND;
+    message = "Route not found";
   } else {
     statusCode = constants.HTTP_STATUS_BAD_REQUEST;
     message = err.message || "Error";

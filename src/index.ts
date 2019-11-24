@@ -5,6 +5,7 @@ import * as bodyParser from "body-parser";
 import compression from "compression";
 import cors from "cors";
 import { handleApiErrors } from "./utils/handleApiErrors";
+import { NotFoundError } from "./types/http/Errors";
 
 import ShoppingCentreController from "./controllers/ShoppingCentreController";
 import AssetController from "./controllers/AssetController";
@@ -26,7 +27,16 @@ const app = () => {
       app.use("/asset", AssetController());
       app.use("/shopping-centre", ShoppingCentreController());
 
+      app.use(function(
+        req: express.Request,
+        res: express.Response,
+        next: express.NextFunction
+      ) {
+        if (!req.route) return next(new NotFoundError());
+        next();
+      });
       app.use(handleApiErrors);
+
       app.listen(PORT, () => {
         console.log(`Server started on port ${PORT}`);
       });
