@@ -10,10 +10,14 @@ import { NotFoundError } from "./types/http/Errors";
 import ShoppingCentreController from "./controllers/ShoppingCentreController";
 import AssetController from "./controllers/AssetController";
 
+import { getConfig } from "./utils/getConfig";
+
 const { PORT = 3000 } = process.env;
 
+const config = getConfig(process.env);
+console.log(config.database);
 const app = () => {
-  createConnection()
+  createConnection(config.database)
     .then(async connection => {
       const app = express();
       app.disable("x-powered-by");
@@ -24,8 +28,8 @@ const app = () => {
 
       app.get("/", (req, res) => res.json({ name: "Inventory API" }));
 
-      app.use("/asset", AssetController());
-      app.use("/shopping-centre", ShoppingCentreController());
+      app.use("/asset", AssetController(config));
+      app.use("/shopping-centre", ShoppingCentreController(config));
 
       app.use(function(
         req: express.Request,
@@ -35,6 +39,7 @@ const app = () => {
         if (!req.route) return next(new NotFoundError());
         next();
       });
+
       app.use(handleApiErrors);
 
       app.listen(PORT, () => {

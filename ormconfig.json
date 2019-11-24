@@ -1,14 +1,14 @@
 {
   "type": "postgres",
-  "host": "inventory-db",
+  "host": "localhost",
   "port": 5432,
   "username": "postgres",
   "password": "",
   "database": "inventory",
   "synchronize": true,
   "logging": false,
-  "entities": ["build/src/entity/**/*.js"],
-  "migrations": ["build/src/migration/**/*.js"],
+  "entities": ["/src/entity/**/*.ts"],
+  "migrations": ["src/migration/**/*.ts"],
   "subscribers": ["src/subscriber/**/*.ts"],
   "cli": {
     "entitiesDir": "src/entity",
