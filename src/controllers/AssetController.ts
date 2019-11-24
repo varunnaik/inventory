@@ -5,16 +5,22 @@ import { getRepository } from "typeorm";
 import { Asset } from "../entity/Asset";
 import { constants } from "http2";
 import { handleApiErrors } from "../utils/handleApiErrors";
+import { JwtChecker } from "./middleware/JwtChecker";
+import { ConfigType } from "../types/app/Config";
 
-export default function AssetController(): Router {
+export default function AssetController(config: ConfigType): Router {
   const router = Router({ mergeParams: true });
+  const jwtChecker = JwtChecker(config);
 
   /* Create one */
   router.post(
     "/",
-    celebrate({
-      body: AssetType
-    }),
+    [
+      celebrate({
+        body: AssetType
+      }),
+      jwtChecker
+    ],
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const repository = getRepository(Asset);
@@ -30,6 +36,7 @@ export default function AssetController(): Router {
   /* Get one */
   router.get(
     "/:id",
+    [jwtChecker],
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const repository = getRepository(Asset);
@@ -42,19 +49,24 @@ export default function AssetController(): Router {
   );
 
   /* List all */
-  router.get("/", async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const repository = getRepository(Asset);
-      const result = await repository.find();
-      res.status(constants.HTTP_STATUS_OK).json({ result });
-    } catch (err) {
-      handleApiErrors(err, req, res, next);
+  router.get(
+    "/",
+    [jwtChecker],
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const repository = getRepository(Asset);
+        const result = await repository.find();
+        res.status(constants.HTTP_STATUS_OK).json({ result });
+      } catch (err) {
+        handleApiErrors(err, req, res, next);
+      }
     }
-  });
+  );
 
   /* Delete one */
   router.delete(
     "/:id",
+    [jwtChecker],
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const repository = getRepository(Asset);
@@ -72,9 +84,12 @@ export default function AssetController(): Router {
   /* Activate or take offline */
   router.patch(
     "/status/:id",
-    celebrate({
-      body: AssetStatusType
-    }),
+    [
+      celebrate({
+        body: AssetStatusType
+      }),
+      jwtChecker
+    ],
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const repository = getRepository(Asset);
@@ -90,9 +105,12 @@ export default function AssetController(): Router {
   /* Update one */
   router.patch(
     "/:id",
-    celebrate({
-      body: AssetType
-    }),
+    [
+      celebrate({
+        body: AssetType
+      }),
+      jwtChecker
+    ],
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const repository = getRepository(Asset);

@@ -5,16 +5,22 @@ import { getRepository } from "typeorm";
 import { ShoppingCentre } from "../entity/ShoppingCentre";
 import { constants } from "http2";
 import { handleApiErrors } from "../utils/handleApiErrors";
+import { JwtChecker } from "./middleware/JwtChecker";
+import { ConfigType } from "../types/app/Config";
 
-export default function ShoppingCentreController(): Router {
+export default function ShoppingCentreController(config: ConfigType): Router {
   const router = Router({ mergeParams: true });
+  const jwtChecker = JwtChecker(config);
 
   /* Create one */
   router.post(
     "/",
-    celebrate({
-      body: ShoppingCentreType
-    }),
+    [
+      celebrate({
+        body: ShoppingCentreType
+      }),
+      jwtChecker
+    ],
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const repository = getRepository(ShoppingCentre);
@@ -30,6 +36,7 @@ export default function ShoppingCentreController(): Router {
   /* Get one */
   router.get(
     "/:id",
+    [jwtChecker],
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const repository = getRepository(ShoppingCentre);
@@ -42,19 +49,24 @@ export default function ShoppingCentreController(): Router {
   );
 
   /* List all */
-  router.get("/", async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const repository = getRepository(ShoppingCentre);
-      const result = await repository.find();
-      res.status(constants.HTTP_STATUS_OK).json({ result });
-    } catch (err) {
-      handleApiErrors(err, req, res, next);
+  router.get(
+    "/",
+    [jwtChecker],
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const repository = getRepository(ShoppingCentre);
+        const result = await repository.find();
+        res.status(constants.HTTP_STATUS_OK).json({ result });
+      } catch (err) {
+        handleApiErrors(err, req, res, next);
+      }
     }
-  });
+  );
 
   /* Delete one */
   router.delete(
     "/:id",
+    [jwtChecker],
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const repository = getRepository(ShoppingCentre);
@@ -72,9 +84,12 @@ export default function ShoppingCentreController(): Router {
   /* Update one */
   router.patch(
     "/:id",
-    celebrate({
-      body: ShoppingCentreType
-    }),
+    [
+      celebrate({
+        body: ShoppingCentreType
+      }),
+      jwtChecker
+    ],
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const repository = getRepository(ShoppingCentre);
