@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "dev": "npm install && npm run migrate && tsc-watch --onSuccess \"node ./build/src/index.js\"",
+    "dev": "npm install && npm run migrate && tsc-watch --noClear --onSuccess \"node ./build/src/index.js\"",
     "build": "tsc",
     "start": "node ./build/index.js",
     "migrate": "./node_modules/.bin/ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run"
