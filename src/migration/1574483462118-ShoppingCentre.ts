@@ -8,7 +8,7 @@ export class ShoppingCentre1574483462118 implements MigrationInterface {
       `CREATE TABLE "shopping_centre" ("id" uuid NOT NULL, "name" character varying NOT NULL, "address" character varying NOT NULL, "created_at" integer NOT NULL DEFAULT CURRENT TIMESTAMP, CONSTRAINT "PK_2562a60f20b71a0310c7323395a" PRIMARY KEY ("id"))`
     );
     await queryRunner.query(
-      `CREATE TABLE "asset" ("id" uuid NOT NULL, "active" boolean NOT NULL, "name" character varying NOT NULL, "dimensions" json NOT NULL, "location" json NOT NULL, "status" character varying NOT NULL, "created_at" integer NOT NULL DEFAULT CURRENT TIMESTAMP, "shoppingcentreId" uuid, CONSTRAINT "PK_1209d107fe21482beaea51b745e" PRIMARY KEY ("id"))`
+      `CREATE TABLE "asset" ("id" uuid NOT NULL, "name" character varying NOT NULL, "dimensions" json NOT NULL, "location" json NOT NULL, "status" character varying NOT NULL, "created_at" integer NOT NULL DEFAULT CURRENT TIMESTAMP, "shoppingcentreId" uuid, CONSTRAINT "PK_1209d107fe21482beaea51b745e" PRIMARY KEY ("id"))`
     );
     await queryRunner.query(
       `ALTER TABLE "asset" ADD CONSTRAINT "FK_f98956c91151e34b45ab207542f" FOREIGN KEY ("shoppingcentreId") REFERENCES "shopping_centre"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`

@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { celebrate, Joi, errors } from "celebrate";
-import { AssetType } from "../types/http/Asset";
+import { AssetType, AssetStatusType } from "../types/http/Asset";
 import { getRepository } from "typeorm";
 import { Asset } from "../entity/Asset";
 import { constants } from "http2";
@@ -58,7 +58,28 @@ export default function AssetController(): Router {
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const repository = getRepository(Asset);
+        await repository.findOneOrFail({ id: req.params.id });
         const result = await repository.delete({ id: req.params.id });
+        res
+          .status(constants.HTTP_STATUS_OK)
+          .json({ result: { id: req.params.id, status: "deleted" } });
+      } catch (err) {
+        handleApiErrors(err, req, res, next);
+      }
+    }
+  );
+
+  /* Activate or take offline */
+  router.patch(
+    "/status/:id",
+    celebrate({
+      body: AssetStatusType
+    }),
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const repository = getRepository(Asset);
+        await repository.findOneOrFail({ id: req.params.id });
+        const result = await repository.update(req.params.id, req.body);
         res.status(constants.HTTP_STATUS_OK).json({ result });
       } catch (err) {
         handleApiErrors(err, req, res, next);
@@ -75,6 +96,7 @@ export default function AssetController(): Router {
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const repository = getRepository(Asset);
+        await repository.findOneOrFail({ id: req.params.id });
         const result = await repository.update(req.params.id, req.body);
         res.status(constants.HTTP_STATUS_OK).json({ result });
       } catch (err) {
@@ -82,5 +104,6 @@ export default function AssetController(): Router {
       }
     }
   );
+
   return router;
 }
