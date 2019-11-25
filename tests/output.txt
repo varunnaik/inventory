@@ -1,0 +1,38 @@
+
+> inventory-api@1.0.0 test /home/varun/projects/ooh
+> jest --verbose
+
+PASS tests/api/asset.test.ts
+  Shopping Centre
+    POST /asset
+      ✓ should create asset (21ms)
+      ✓ should reject invalid assets (8ms)
+    GET /asset
+      ✓ should get assets (23ms)
+      ✓ should get single asset (16ms)
+    DELETE /asset/:id
+      ✓ should delete a asset (20ms)
+    PATCH /asset/:id
+      ✓ should update a asset (26ms)
+
+PASS tests/api/shoppingcentre.test.ts
+  Shopping Centre
+    Access control
+      ✓ Should allow access with valid token (71ms)
+      ✓ Should deny access with invalid token (36ms)
+    POST /shopping-centre
+      ✓ should create shopping-centre (41ms)
+      ✓ should reject invalid shopping-centres (8ms)
+    GET /shopping-centre
+      ✓ should get shopping-centres (12ms)
+      ✓ should get single shopping centre (15ms)
+    DELETE /shopping-centre/:id
+      ✓ should delete a centre (20ms)
+    PATCH /shopping-centre/:id
+      ✓ should update a centre (26ms)
+
+Test Suites: 2 passed, 2 total
+Tests:       14 passed, 14 total
+Snapshots:   0 total
+Time:        2.826s
+Ran all test suites.
