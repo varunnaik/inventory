@@ -27,7 +27,10 @@ TYPEORM_ENTITIES=build/src/entity/**/*.js
 NODE_ENV=development
 ```
 
-To start the project, first launch the Dockers with
+To start the project, first do an npm install so you can later migrate the database
+`npm install`
+
+Then launch the Dockers with
 `docker-compose up`
 
 Then migrate database with

@@ -3,6 +3,7 @@ services:
   inventory-api:
     build: .
     image: inventory/api
+    container_name: "inventory-api"
     command: npm run dev
     volumes:
       - .:/app
