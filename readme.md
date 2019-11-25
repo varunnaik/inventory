@@ -13,7 +13,7 @@ Authentication: JWT token (locally generated)
 
 ### Start instructions
 
-You will need an env file at `env.development` and `env.test`, here is a sample file for development:
+You will need an env file at `env.development`, a sample file is included below and this should work as-is:
 
 ```
 JWT_SECRET=ermfioemfierm45)(DC
@@ -27,20 +27,28 @@ TYPEORM_ENTITIES=build/src/entity/**/*.js
 NODE_ENV=development
 ```
 
-To start the project, first do an npm install so you can later migrate the database
-`npm install`
+To start the project, 
 
-Then launch the Dockers with
-`docker-compose up`
+```
+C First do an npm install so you can later migrate the database
+npm install
 
-Then migrate database with
-`npm run migrate`
+# Then launch the Dockers with
+docker-compose up
 
-Next, generate a JWT token for testing with
+# Then migrate database with
+npm run migrate
+
+```
+
+You can now use and test the API using a Postman collection included for the purpose.
+
+You will first need to generate a JWT token for testing with
 `npm run getJwt`
 
-A Postman collection exists at
-`Inventory.postman_collection.json` to help test the Api and also document it.
+And then use the Postman collection
+`Inventory.postman_collection.json`
+
 
 ### Tests
 
@@ -58,7 +66,7 @@ TYPEORM_ENTITIES=src/entity/**/*.ts
 NODE_ENV=test
 ```
 
-Then do
+Then if not already done, do
 `npm install`
 
 and run tests with
