@@ -2,14 +2,7 @@
 
 This implements a shopping centre API.
 
-Technology choices:
-Framework: Express
-Language: Typescript
-Database: Postgres
-Dev environment: Docker-compose
-Tests: Jest
-Orm: TypeORM
-Authentication: JWT token (locally generated)
+This uses the Express framework with Typescript. It uses Postgres for the database with orm abstraction provided by TypeOrm. Docker-compose provides the dev environment and Jest does the testing. Authentication is with a JWT bearer token.
 
 ### Start instructions
 
@@ -30,7 +23,7 @@ NODE_ENV=development
 To start the project, 
 
 ```
-C First do an npm install so you can later migrate the database
+# First do an npm install so you can later migrate the database
 npm install
 
 # Then launch the Dockers with
@@ -49,6 +42,7 @@ You will first need to generate a JWT token for testing with
 And then use the Postman collection
 `Inventory.postman_collection.json`
 
+The Postman collection also serves to document the API. Before using the collection, replace the bearer token with the one generated above. The collection includes a token valid for a week if you don't change the `JWT_SECRET` in the sample configuration.
 
 ### Tests
 
