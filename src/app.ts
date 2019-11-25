@@ -24,6 +24,7 @@ class App {
 
   constructor(config: ApiConfig) {
     this.apiConfig = config;
+    this.app = express();
   }
 
   async createServer() {
@@ -35,19 +36,21 @@ class App {
     } = this.apiConfig;
     try {
       const connection = await createConnection(config.database);
-      const app = express();
 
-      app.use(cors());
-      app.use(compression());
-      app.use(bodyParser.json());
+      this.app.use(cors());
+      this.app.use(compression());
+      this.app.use(bodyParser.json());
 
-      app.get("/", (req, res) => res.json({ name: "Inventory API" }));
+      this.app.get("/", (req, res) => res.json({ name: "Inventory API" }));
 
-      app.use("/asset", AssetController(config, logger));
-      app.use("/shopping-centre", ShoppingCentreController(config, logger));
+      this.app.use("/asset", AssetController(config, logger));
+      this.app.use(
+        "/shopping-centre",
+        ShoppingCentreController(config, logger)
+      );
 
       // 404 error catcher
-      app.use(
+      this.app.use(
         (
           req: express.Request,
           res: express.Response,
@@ -59,7 +62,7 @@ class App {
       );
 
       // Middleware error catcher
-      app.use(
+      this.app.use(
         (
           err: any,
           req: express.Request,
@@ -67,8 +70,6 @@ class App {
           next: express.NextFunction
         ) => handleApiErrors({ err, req, res, next, logger })
       );
-
-      this.app = app;
     } catch (e) {
       logger.error(e);
     }
