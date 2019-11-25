@@ -66,8 +66,7 @@ Then if not already done, do
 and run tests with
 `npm test`
 
-A copy of the test output is stored in
-`tests/output.txt`
+For the purposes of this test, I have stored the test output at `tests/output.txt` for easy reference.
 
 ### Notes
 
@@ -85,7 +84,7 @@ PATCH    /asset/status/:id      Mark an asset active or offline
 Shopping Centre:
 POST     /shopping-centre       Create a Shopping Centre
 GET      /shopping-centre/:id   Get one Shopping Centre
-GET      /shopping-centre       Get all Shopping Centre
+GET      /shopping-centre       Get all Shopping Centres
 DELETE   /shopping-centre/:id   Delete a Shopping Centre (Cascade delete associated assets)
 PATCH    /shopping-centre/:id   Update a Shopping Centre
 
@@ -104,5 +103,3 @@ All requests are made with a fixed user id. I have not implemented user manageme
 
 - Tests
   Jest tests using Supertest to test the API are present.
-
--
