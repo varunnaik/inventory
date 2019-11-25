@@ -35,7 +35,7 @@ describe("Shopping Centre", () => {
     const logger = winston.createLogger({
       transports: [new winston.transports.Console({ silent: true })]
     });
-    token = generateJwt();
+    token = generateJwt(config.jwtSecret);
     const api = new App({
       config,
       ShoppingCentreController,

@@ -30,7 +30,7 @@ describe("Shopping Centre", () => {
       config: ConfigType,
       logger: Logger
     ) => express.Router();
-    token = generateJwt();
+    token = generateJwt(config.jwtSecret);
     const api = new App({
       config,
       ShoppingCentreController,

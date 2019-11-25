@@ -4,7 +4,7 @@
   "description": "Inventory Api Ooh challenge",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage --forceExit --maxWorkers=1",
+    "test": "jest",
     "dev": "npm install && tsc-watch --noClear --onSuccess \"node ./build/src/index.js\"",
     "build": "tsc",
     "start": "node ./build/index.js",
