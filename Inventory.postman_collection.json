@@ -1,0 +1,321 @@
+{
+  "info": {
+    "_postman_id": "4d6d99e6-224b-446b-a5a6-63a7cfcfbe2e",
+    "name": "Inventory",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Shopping Centre",
+      "item": [
+        {
+          "name": "Create a Shopping Centre",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwNGQyMjYwMy0zNWUxLTQyN2MtYTViZi1iZDk2MTQ0ZTA0ODAiLCJpYXQiOjE1NzQ1ODEzNzAsImV4cCI6MTU3NTE4NjE3MH0.YD0rICIzLbGYgcYOjay2OYNItHAYJPK3icIjB_3h8wc",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"name\": \"Acme Shopping Centre\",\n\t\"address\": \"123 Hollywood Blvd\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/shopping-centre",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["shopping-centre"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all Shopping Centres",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwNGQyMjYwMy0zNWUxLTQyN2MtYTViZi1iZDk2MTQ0ZTA0ODAiLCJpYXQiOjE1NzQ1ODEzNzAsImV4cCI6MTU3NTE4NjE3MH0.YD0rICIzLbGYgcYOjay2OYNItHAYJPK3icIjB_3h8wc",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/shopping-centre",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["shopping-centre"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a Shopping Centre",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwNGQyMjYwMy0zNWUxLTQyN2MtYTViZi1iZDk2MTQ0ZTA0ODAiLCJpYXQiOjE1NzQ1ODEzNzAsImV4cCI6MTU3NTE4NjE3MH0.YD0rICIzLbGYgcYOjay2OYNItHAYJPK3icIjB_3h8wc",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/shopping-centre/c49a16c9-01d0-49a7-b882-0f6e83f6bef7",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": [
+                "shopping-centre",
+                "c49a16c9-01d0-49a7-b882-0f6e83f6bef7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update a Shopping Centre",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwNGQyMjYwMy0zNWUxLTQyN2MtYTViZi1iZDk2MTQ0ZTA0ODAiLCJpYXQiOjE1NzQ1ODEzNzAsImV4cCI6MTU3NTE4NjE3MH0.YD0rICIzLbGYgcYOjay2OYNItHAYJPK3icIjB_3h8wc",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"name\": \"Acme Shopping Centre\",\n\t\"address\": \"999 Hollywood Blvd\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/shopping-centre/c49a16c9-01d0-49a7-b882-0f6e83f6bef7",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": [
+                "shopping-centre",
+                "c49a16c9-01d0-49a7-b882-0f6e83f6bef7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get one Shopping Centre",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwNGQyMjYwMy0zNWUxLTQyN2MtYTViZi1iZDk2MTQ0ZTA0ODAiLCJpYXQiOjE1NzQ1ODEzNzAsImV4cCI6MTU3NTE4NjE3MH0.YD0rICIzLbGYgcYOjay2OYNItHAYJPK3icIjB_3h8wc",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/shopping-centre/615157d4-6762-419b-96c4-3aceace3b3e8",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": [
+                "shopping-centre",
+                "615157d4-6762-419b-96c4-3aceace3b3e8"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Asset",
+      "item": [
+        {
+          "name": "Create an Asset",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwNGQyMjYwMy0zNWUxLTQyN2MtYTViZi1iZDk2MTQ0ZTA0ODAiLCJpYXQiOjE1NzQ1ODEzNzAsImV4cCI6MTU3NTE4NjE3MH0.YD0rICIzLbGYgcYOjay2OYNItHAYJPK3icIjB_3h8wc",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"shoppingcentre\": \"615157d4-6762-419b-96c4-3aceace3b3e8\",\n\t\"dimensions\": { \"width\": 100, \"height\": 100 },\n\t\"location\": { \"floor\": \"1\", \"area\": \"12-c34\" },\n\t\"status\": \"active\",\n\t\"name\": \"An Asset\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/asset",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["asset"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all Assets",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwNGQyMjYwMy0zNWUxLTQyN2MtYTViZi1iZDk2MTQ0ZTA0ODAiLCJpYXQiOjE1NzQ1ODEzNzAsImV4cCI6MTU3NTE4NjE3MH0.YD0rICIzLbGYgcYOjay2OYNItHAYJPK3icIjB_3h8wc",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/asset",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["asset"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete an Asset",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwNGQyMjYwMy0zNWUxLTQyN2MtYTViZi1iZDk2MTQ0ZTA0ODAiLCJpYXQiOjE1NzQ1ODEzNzAsImV4cCI6MTU3NTE4NjE3MH0.YD0rICIzLbGYgcYOjay2OYNItHAYJPK3icIjB_3h8wc",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/asset/f233cb08-88f6-4e1f-9697-e74ec0b519b5",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["asset", "f233cb08-88f6-4e1f-9697-e74ec0b519b5"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update an Asset",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwNGQyMjYwMy0zNWUxLTQyN2MtYTViZi1iZDk2MTQ0ZTA0ODAiLCJpYXQiOjE1NzQ1ODEzNzAsImV4cCI6MTU3NTE4NjE3MH0.YD0rICIzLbGYgcYOjay2OYNItHAYJPK3icIjB_3h8wc",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"shoppingcentre\": \"615157d4-6762-419b-96c4-3aceace3b3e8\",\n\t\"dimensions\": { \"width\": 999, \"height\": 999 },\n\t\"location\": { \"floor\": \"1\", \"area\": \"11-c34\" },\n\t\"status\": \"offline\",\n\t\"name\": \"An Asset\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/asset/84ba6b29-cb1f-4eb5-99c5-de7dffd91c3b",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["asset", "84ba6b29-cb1f-4eb5-99c5-de7dffd91c3b"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Mark an Asset active or offline",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwNGQyMjYwMy0zNWUxLTQyN2MtYTViZi1iZDk2MTQ0ZTA0ODAiLCJpYXQiOjE1NzQ1ODEzNzAsImV4cCI6MTU3NTE4NjE3MH0.YD0rICIzLbGYgcYOjay2OYNItHAYJPK3icIjB_3h8wc",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"status\": \"active\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/asset/status/",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["asset", "status", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get one Asset",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwNGQyMjYwMy0zNWUxLTQyN2MtYTViZi1iZDk2MTQ0ZTA0ODAiLCJpYXQiOjE1NzQ1ODEzNzAsImV4cCI6MTU3NTE4NjE3MH0.YD0rICIzLbGYgcYOjay2OYNItHAYJPK3icIjB_3h8wc",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/asset/84ba6b29-cb1f-4eb5-99c5-de7dffd91c3b",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["asset", "84ba6b29-cb1f-4eb5-99c5-de7dffd91c3b"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    }
+  ],
+  "protocolProfileBehavior": {}
+}
