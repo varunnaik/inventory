@@ -11,3 +11,5 @@ const generateJwt = () => {
 
 const jwtToken = generateJwt();
 console.log(jwtToken);
+
+export default generateJwt;
