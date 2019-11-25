@@ -1,6 +1,6 @@
 ### Inventory Api
 
-This implements a shopping centre API.
+This implements a shopping centre inventory management API.
 
 This uses the Express framework with Typescript. It uses Postgres for the database with orm abstraction provided by TypeOrm. Docker-compose provides the dev environment and Jest does the testing. Authentication is with a JWT bearer token.
 
