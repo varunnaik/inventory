@@ -1,4 +1,4 @@
-### Shopping Centre Api
+### Inventory Api
 
 This implements a shopping centre API.
 
