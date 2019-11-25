@@ -7,8 +7,16 @@ import { constants } from "http2";
 import { handleApiErrors } from "../utils/handleApiErrors";
 import { JwtChecker } from "./middleware/JwtChecker";
 import { ConfigType } from "../types/app/Config";
+import { Logger } from "winston";
 
-export default function ShoppingCentreController(config: ConfigType): Router {
+export interface IShoppingCentreController {
+  (config: ConfigType, logger: Logger): Router;
+}
+
+export let ShoppingCentreController: IShoppingCentreController = (
+  config: ConfigType,
+  logger: Logger
+): Router => {
   const router = Router({ mergeParams: true });
   const jwtChecker = JwtChecker(config);
 
@@ -28,7 +36,7 @@ export default function ShoppingCentreController(config: ConfigType): Router {
         const result = await repository.save(shoppingCentre);
         res.status(constants.HTTP_STATUS_OK).json({ result });
       } catch (err) {
-        handleApiErrors(err, req, res, next);
+        handleApiErrors({ err, req, res, next, logger });
       }
     }
   );
@@ -43,7 +51,7 @@ export default function ShoppingCentreController(config: ConfigType): Router {
         const result = await repository.find({ id: req.params.id });
         res.status(constants.HTTP_STATUS_OK).json({ result });
       } catch (err) {
-        handleApiErrors(err, req, res, next);
+        handleApiErrors({ err, req, res, next, logger });
       }
     }
   );
@@ -58,7 +66,7 @@ export default function ShoppingCentreController(config: ConfigType): Router {
         const result = await repository.find();
         res.status(constants.HTTP_STATUS_OK).json({ result });
       } catch (err) {
-        handleApiErrors(err, req, res, next);
+        handleApiErrors({ err, req, res, next, logger });
       }
     }
   );
@@ -76,7 +84,7 @@ export default function ShoppingCentreController(config: ConfigType): Router {
           .status(constants.HTTP_STATUS_OK)
           .json({ result: { id: req.params.id, status: "deleted" } });
       } catch (err) {
-        handleApiErrors(err, req, res, next);
+        handleApiErrors({ err, req, res, next, logger });
       }
     }
   );
@@ -97,9 +105,9 @@ export default function ShoppingCentreController(config: ConfigType): Router {
         const result = await repository.update(req.params.id, req.body);
         res.status(constants.HTTP_STATUS_OK).json({ result });
       } catch (err) {
-        handleApiErrors(err, req, res, next);
+        handleApiErrors({ err, req, res, next, logger });
       }
     }
   );
   return router;
-}
+};
