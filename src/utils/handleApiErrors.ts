@@ -8,13 +8,18 @@ import {
   NoBearerTokenError,
   AuthorizationError
 } from "../types/http/Errors";
+import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
+import { Logger } from "winston";
 
-export function handleApiErrors(
-  err: any,
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
+export function handleApiErrors(args: {
+  err: any;
+  req: Request;
+  res: Response;
+  next: NextFunction;
+  logger: Logger;
+}) {
+  let { err, req, res, next, logger } = args;
+
   let statusCode: number = 500;
   let message: any = "Internal Server Error";
 
@@ -35,6 +40,13 @@ export function handleApiErrors(
   ) {
     statusCode = constants.HTTP_STATUS_UNAUTHORIZED;
     message = err.message;
+  } else if (err instanceof EntityNotFoundError) {
+    statusCode = constants.HTTP_STATUS_NOT_FOUND;
+    message = err.message;
+  }
+
+  if (err.stack) {
+    logger.error(err.stack);
   }
 
   return res.status(statusCode).send({ message });
