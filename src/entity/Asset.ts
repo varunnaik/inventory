@@ -20,7 +20,8 @@ export class Asset {
 
   @ManyToOne(
     (type: any) => ShoppingCentre,
-    (shoppingcentre: ShoppingCentre) => shoppingcentre.assets
+    (shoppingcentre: ShoppingCentre) => shoppingcentre.assets,
+    { onDelete: "CASCADE" }
   )
   shoppingcentre: ShoppingCentre;
 
