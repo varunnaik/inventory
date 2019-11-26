@@ -90,16 +90,14 @@ PATCH    /shopping-centre/:id   Update a Shopping Centre
 
 ```
 
-- User Authentication
-  This uses a simple JWT auth to autheticate requests. These tokens are valid for 1 week, and validate all access to asset and shopping centre endpoints.
+- User Authentication:
+  This uses a simple JWT auth to autheticate requests. These tokens are valid for 1 week, and validate all access to asset and shopping centre endpoints. All requests are made with a fixed user id. I have not implemented user management and roles for this test.
 
-All requests are made with a fixed user id. I have not implemented user management and roles for this test.
-
-- Validation
+- Validation:
   Validation is done using Joi and the Celebrate middleware to check incoming requests against expected Typescript types for each resource. Typescript types for incoming data are present in `src/types/http`.
 
-- Persistence
+- Persistence:
   Persistence is done with TypeORM and this takes care of migrations as well. TypeORM entities are present in `src/entity` and migrations in `src/migration`. Everything is stored in a Postgres database.
 
-- Tests
+- Tests:
   Jest tests using Supertest to test the API are present.
